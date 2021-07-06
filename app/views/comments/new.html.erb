@@ -1,0 +1,9 @@
+<h1>Here we will bring form to create new comment on the post...</h1>
+
+<%= form_with(model: [@post, @comment], local: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Comment here..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

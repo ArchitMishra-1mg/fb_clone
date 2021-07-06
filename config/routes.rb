@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts, only: %i[create destroy] do
     resources :likes
+    resources :comments
   end
 
   root 'static#home'

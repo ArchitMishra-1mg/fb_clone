@@ -4,10 +4,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    debugger
-    @user = current_user
     @post = Post.find(params[:post_id])
-    @post.comments.create(user: @user, content: params[:comment][:content])
+    @post.comments.create(user: current_user, content: params[:comment][:content])
     @post.update(nComments: @post.nComments + 1)
     flash[:success] = 'Done Successfully'
     redirect_to(post_comments_path(post_id: @post.id))        # or the location user was before commenting

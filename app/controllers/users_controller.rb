@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   def index
@@ -16,6 +17,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
+      flash[:success] = 'Welcome to the Bababook!'
       redirect_to @user
     else
       render 'new'
@@ -31,12 +34,5 @@ class UsersController < ApplicationController
                                  :password_confirmation,
                                  :mob_no,
                                  :city)
-  end
-
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = 'Please Login'
-      redirect_to login_path
-    end
   end
 end

@@ -12,12 +12,15 @@
 
   <body>
     <%= render 'layouts/header' %>   <!-- it computes partial from header partial in layout folder.-->
+    <hr>
     <div class = "container">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %>
     </div>
+    <hr>
     <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

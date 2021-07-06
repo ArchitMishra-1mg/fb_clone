@@ -1,0 +1,18 @@
+<li>
+  <%# debugger %>
+  <%= post.content %>
+  <br>
+  <% if Like.where(post_id: post.id, user_id: current_user.id).count > 0 %>
+    <%# flash.now[:danger] = 'Already Liked' %>
+    <%= link_to "Liked this post", '#' %>
+  <% else %>
+    <%= link_to "Like this post", post_likes_path(post_id: post.id), method: :post %>
+  <% end %>
+  <%= link_to "#{post.nLikes} likes", post_likes_path(post_id: post.id) %>
+<!--  <%#= post.likes %> likes-->
+  <%= post.nComments %> comments
+  <br>
+  posted <%= time_ago_in_words(post.created_at) %> ago.
+  <br> <br>
+</li>
+<!--post_likes_url(post_id: post.id)-->

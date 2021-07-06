@@ -1,0 +1,9 @@
+<div>
+  <% if @user.posts.any? %>
+    <h3> <%= @user.posts.count %> Posts </h3>
+    <ol class="posts">
+      <%# debugger %>
+      <%= render @posts %>
+    </ol>
+  <% end %>
+</div>

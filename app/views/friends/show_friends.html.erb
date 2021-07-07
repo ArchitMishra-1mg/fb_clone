@@ -1,0 +1,10 @@
+<h4> Hi, listing all the friends of <%= @user.name %></h4>
+<ul>
+  <% @user = User.find(params[:id]) %>
+  <% @friends.each do |f| %>
+  <li>
+    <% user1 = f.user_id == @user.id ? User.find(f.friend_id) : User.find(f.user_id) %>
+    <%= user1.name %>
+  </li>
+  <% end %>
+</ul>

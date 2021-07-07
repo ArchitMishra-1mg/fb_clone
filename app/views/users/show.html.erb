@@ -1,4 +1,20 @@
 <h1>
-  This is <%= @user.name %>'s home page.
+  <% if @user.id == current_user.id %>
+    This is <%= @user.name %>'s(your) home page.
+  <%else %>
+    This is <%= @user.name %>'s home page.
+  <% end %>
 </h1>
+<%= link_to "#{friends_count(params[:id])} friends", friends_user_path(friend_id: params[:id]), method: 'get' %>
+<% if @user.id == current_user.id %>
+  <%= link_to 'Pending Requests', pending_user_path, method: 'get' %>
+<% else %>
+  <% if friendship_accepted(@user.id, current_user.id) %>
+    <%= link_to 'Unfriend this user', friends_user_path(friend_id: params[:id]), method: 'delete' %>
+  <% elsif friendship_pending(@user.id, current_user.id) %>
+    <%= link_to 'Revoke Friend Request', reject_user_path(friend_id: params[:id]), method: 'delete' %>
+  <%else %>
+    <%= link_to 'Send Friend Request', friends_user_path(friend_id: params[:id]), method: 'post' %>
+  <% end %>
+<% end %>
 <%= render 'feed' %>

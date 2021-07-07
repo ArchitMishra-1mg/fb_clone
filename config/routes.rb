@@ -5,7 +5,16 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
 
-  resources :users
+  resources :users do
+    member do
+      get 'friends', to: 'friends#show_friends'       # view all friends
+      post 'friends', to: 'friends#create'            # send friend request
+      delete 'friends', to: 'friends#destroy'         # unfriend user
+      get 'pending', to: 'friends#pending'            # view all pending request for our id only.
+      post 'accept', to: 'friends#accept'             # accept some pending request
+      delete 'reject', to: 'friends#reject'           # reject some pending request
+    end
+  end
   resources :posts, only: %i[create destroy] do
     resources :likes
     resources :comments

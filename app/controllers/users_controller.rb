@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # debugger
+      # @user.picture.create(url: params[:user][:picture])
+      Picture.create(url: params[:user][:picture], imageable_type: 'User', imageable_id: @user.id)
       log_in @user
       flash[:success] = 'Welcome to the Bababook!'
       redirect_to @user
@@ -33,6 +36,7 @@ class UsersController < ApplicationController
                                  :password,
                                  :password_confirmation,
                                  :mob_no,
-                                 :city)
+                                 :city,
+                                 :dob)
   end
 end

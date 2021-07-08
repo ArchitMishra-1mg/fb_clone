@@ -1,11 +1,11 @@
 <div class="center jumbotron">
   <h1>Welcome to FB clone - The Bababook </h1>
   <h2>
-    This is the home page for <%= link_to "Baba's" , '#' %> FB clone aka Bababook.
+    This is the home page for <%= link_to "Baba's" , 'https://www.linkedin.com/in/archit-mishra-kcm234/', target: '_blank' %> FB clone aka Bababook.
   </h2>
   <% if logged_in? %>
     <%= render 'shared/posts_form' %>
-    <%= render 'users/feed' %>
+    <%= render 'users/better_feed' %>
   <% else %>
     <%= link_to "Sign Up Now", new_user_path, class: "btn btn-lg btn-primary" %>
   <% end %>

@@ -13,6 +13,16 @@ Rails.application.routes.draw do
       get 'pending', to: 'friends#pending'            # view all pending request for our id only.
       post 'accept', to: 'friends#accept'             # accept some pending request
       delete 'reject', to: 'friends#reject'           # reject some pending request
+
+      # resources :friends, only: %i[create index destroy], param: :friend_id do
+      #   member do
+      #     post :accept
+      #     delete :reject
+      #   end
+      #   collection do
+      #     get :pending
+      #   end
+      # end
     end
   end
   resources :posts, only: %i[create destroy] do

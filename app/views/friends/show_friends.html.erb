@@ -4,7 +4,7 @@
   <% @friends.each do |f| %>
   <li>
     <% user1 = f.user_id == @user.id ? User.find(f.friend_id) : User.find(f.user_id) %>
-    <%= user1.name %>
+    <%= link_to user1.name, user1 %>
   </li>
   <% end %>
 </ul>

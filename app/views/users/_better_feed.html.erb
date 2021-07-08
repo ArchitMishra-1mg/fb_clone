@@ -1,0 +1,8 @@
+<h4> Please add more friends to populate your feed more</h4>
+<% @friends = all_friends(current_user.id) %>
+<% @friends.each do |f| %>
+  <% user1 = f.user_id == current_user.id ? User.find(f.friend_id) : User.find(f.user_id) %>
+  <% @posts += user1.posts %>
+<% end %>
+<% @posts = @posts.sort.reverse %>
+<%= render @posts %>

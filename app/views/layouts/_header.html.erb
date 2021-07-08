@@ -12,7 +12,12 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to current_user.name, current_user %></li>
+              <% if !current_user.picture.nil? %>
+                <img src="<%= current_user.picture.url.to_s%>" alt="profile_pic" style="height: 60px; width: 60px">
+              <% else %>
+                <img src="https://lh3.googleusercontent.com/proxy/friVHZ4hBFh_BRK3k9dBt3UEfIAdoioO3fkxvt8z8L4K06QdX9qdgXvjRKJgq80TlTtPAzwjgxdbZEaqiPKd4UNKWnzByT0" alt="profile_pic" style="height: 60px; width: 60px">
+              <% end %>
               <li><%= link_to "Settings", '#' %></li>
 <!--              <li class="divider"></li>-->
               <li><%= link_to "Log out", logout_path, method: :delete %></li>

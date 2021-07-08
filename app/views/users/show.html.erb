@@ -5,6 +5,12 @@
     This is <%= @user.name %>'s home page.
   <% end %>
 </h1>
+<% if @user.picture.nil? %>
+  <img src="https://lh3.googleusercontent.com/proxy/friVHZ4hBFh_BRK3k9dBt3UEfIAdoioO3fkxvt8z8L4K06QdX9qdgXvjRKJgq80TlTtPAzwjgxdbZEaqiPKd4UNKWnzByT0" alt="profile_pic" style="height: 60px; width: 60px">
+<% else %>
+  <img src="<%= @user.picture.url.to_s %>" alt="profile_pic" width="75px" height="75px">
+<% end %>
+<br>
 <%= link_to "#{friends_count(params[:id])} friends", friends_user_path(friend_id: params[:id]), method: 'get' %>
 <% if @user.id == current_user.id %>
   <%= link_to 'Pending Requests', pending_user_path, method: 'get' %>
